@@ -1,0 +1,267 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "Stationery design project or wedding suite order",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "code": { "type": "string", "maxLength": 64 },
+        "title": { "type": "string", "maxLength": 200 },
+        "clientName": { "type": "string", "maxLength": 150 },
+        "clientEmail": { "type": "string", "maxLength": 150 },
+        "clientPhone": { "type": "string", "maxLength": 50 },
+        "category": { "type": "string", "maxLength": 50 },
+        "status": { "type": "string", "maxLength": 50 },
+        "eventDate": { "type": "string", "maxLength": 30 },
+        "targetDeliveryDate": { "type": "string", "maxLength": 30 },
+        "proofDeadlineDate": { "type": "string", "maxLength": 30 },
+        "crmStage": { "type": "string", "maxLength": 50 },
+        "weddingPlanner": { "type": "string", "maxLength": 150 },
+        "location": { "type": "string", "maxLength": 150 },
+        "notes": { "type": "string", "maxLength": 5000 },
+        "currentStepProgress": { "type": "number" },
+        "maxIncludedRevisions": { "type": "number" },
+        "updatedAt": { "type": "string", "maxLength": 50 },
+        "ownerEmail": { "type": "string", "maxLength": 150 }
+      },
+      "required": ["title", "clientName", "category", "status", "targetDeliveryDate"]
+    },
+    "ProjectTask": {
+      "title": "ProjectTask",
+      "description": "Individual atelier processing or production task",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "projectId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 250 },
+        "category": { "type": "string", "maxLength": 50 },
+        "department": { "type": "string", "maxLength": 50 },
+        "assignee": { "type": "string", "maxLength": 50 },
+        "estimatedHours": { "type": "number" },
+        "actualHoursLogged": { "type": "number" },
+        "scheduledDate": { "type": "string", "maxLength": 30 },
+        "status": { "type": "string", "maxLength": 50 },
+        "completed": { "type": "boolean" },
+        "priority": { "type": "string", "maxLength": 20 },
+        "blockReason": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["title", "estimatedHours", "scheduledDate"]
+    },
+    "InventoryItem": {
+      "title": "InventoryItem",
+      "description": "Raw material stock item like handmade paper, seals, ribbons",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 200 },
+        "category": { "type": "string", "maxLength": 50 },
+        "unit": { "type": "string", "maxLength": 30 },
+        "currentStock": { "type": "number" },
+        "minStockAlert": { "type": "number" },
+        "unitCost": { "type": "number" },
+        "supplier": { "type": "string", "maxLength": 150 },
+        "supplierLeadTimeDays": { "type": "number" },
+        "colorOrVariant": { "type": "string", "maxLength": 100 },
+        "storageLocation": { "type": "string", "maxLength": 100 }
+      },
+      "required": ["name", "category", "unit", "currentStock"]
+    },
+    "SupplierOrder": {
+      "title": "SupplierOrder",
+      "description": "Purchase order sent to paper mills and ribbon suppliers",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "orderNumber": { "type": "string", "maxLength": 50 },
+        "supplierName": { "type": "string", "maxLength": 150 },
+        "orderDate": { "type": "string", "maxLength": 30 },
+        "expectedDeliveryDate": { "type": "string", "maxLength": 30 },
+        "actualReceivedDate": { "type": "string", "maxLength": 30 },
+        "status": { "type": "string", "maxLength": 50 },
+        "totalCost": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "trackingNumber": { "type": "string", "maxLength": 100 }
+      },
+      "required": ["orderNumber", "supplierName", "orderDate", "status"]
+    },
+    "CallNote": {
+      "title": "CallNote",
+      "description": "Call notes and aesthetic decisions taken with clients",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "projectId": { "type": "string", "maxLength": 128 },
+        "date": { "type": "string", "maxLength": 30 },
+        "time": { "type": "string", "maxLength": 20 },
+        "durationMinutes": { "type": "number" },
+        "title": { "type": "string", "maxLength": 200 },
+        "attendees": { "type": "string", "maxLength": 200 },
+        "notes": { "type": "string", "maxLength": 5000 }
+      },
+      "required": ["title", "notes", "date"]
+    },
+    "Appointment": {
+      "title": "Appointment",
+      "description": "Client meeting or personal commitment",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "projectId": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 200 },
+        "date": { "type": "string", "maxLength": 30 },
+        "time": { "type": "string", "maxLength": 20 },
+        "durationMinutes": { "type": "number" },
+        "type": { "type": "string", "maxLength": 50 },
+        "isPersonalCommitment": { "type": "boolean" },
+        "locationOrLink": { "type": "string", "maxLength": 300 },
+        "notes": { "type": "string", "maxLength": 2000 },
+        "completed": { "type": "boolean" }
+      },
+      "required": ["title", "date", "time", "durationMinutes"]
+    },
+    "StudioExpense": {
+      "title": "StudioExpense",
+      "description": "Atelier studio overhead and operating expense",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "date": { "type": "string", "maxLength": 30 },
+        "description": { "type": "string", "maxLength": 250 },
+        "category": { "type": "string", "maxLength": 50 },
+        "amount": { "type": "number" },
+        "recurring": { "type": "boolean" }
+      },
+      "required": ["date", "description", "category", "amount"]
+    },
+    "ClientEmail": {
+      "title": "ClientEmail",
+      "description": "Incoming client communication filtered for stationery studio",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "projectId": { "type": "string", "maxLength": 128 },
+        "clientName": { "type": "string", "maxLength": 150 },
+        "clientEmail": { "type": "string", "maxLength": 150 },
+        "subject": { "type": "string", "maxLength": 250 },
+        "snippet": { "type": "string", "maxLength": 500 },
+        "body": { "type": "string", "maxLength": 5000 },
+        "date": { "type": "string", "maxLength": 30 },
+        "time": { "type": "string", "maxLength": 20 },
+        "isUnread": { "type": "boolean" },
+        "priority": { "type": "boolean" },
+        "type": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["clientName", "subject", "date"]
+    },
+    "CapacitySettings": {
+      "title": "CapacitySettings",
+      "description": "Daily and weekly hour allocations for atelier capacity",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "maxDailyHours": { "type": "number" },
+        "activeYear": { "type": "number" },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["maxDailyHours"]
+    },
+    "CatalogProduct": {
+      "title": "CatalogProduct",
+      "description": "Stationery suite product and base pricing",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "code": { "type": "string", "maxLength": 64 },
+        "name": { "type": "string", "maxLength": 200 },
+        "category": { "type": "string", "maxLength": 50 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "basePrice": { "type": "number" },
+        "unit": { "type": "string", "maxLength": 30 },
+        "estimatedMinutesPerUnit": { "type": "number" },
+        "materialCostPerUnit": { "type": "number" },
+        "printCostPerUnit": { "type": "number" },
+        "suggestedPaper": { "type": "string", "maxLength": 150 },
+        "hasWaxSeal": { "type": "boolean" },
+        "hasSilkRibbon": { "type": "boolean" }
+      },
+      "required": ["name", "category", "basePrice", "unit"]
+    },
+    "Quote": {
+      "title": "Quote",
+      "description": "Client price quote and estimate for stationery suites",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "number": { "type": "string", "maxLength": 64 },
+        "clientName": { "type": "string", "maxLength": 150 },
+        "clientEmail": { "type": "string", "maxLength": 150 },
+        "clientPhone": { "type": "string", "maxLength": 50 },
+        "eventDate": { "type": "string", "maxLength": 30 },
+        "targetDeliveryDate": { "type": "string", "maxLength": 30 },
+        "createdAt": { "type": "string", "maxLength": 30 },
+        "validUntilDate": { "type": "string", "maxLength": 30 },
+        "status": { "type": "string", "maxLength": 50 },
+        "convertedProjectId": { "type": "string", "maxLength": 128 },
+        "subtotal": { "type": "number" },
+        "discount": { "type": "number" },
+        "totalAmount": { "type": "number" },
+        "depositPercentage": { "type": "number" },
+        "depositAmount": { "type": "number" },
+        "estimatedHours": { "type": "number" },
+        "estimatedCosts": { "type": "number" },
+        "estimatedMargin": { "type": "number" },
+        "estimatedMarginPercentage": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 3000 },
+        "terms": { "type": "string", "maxLength": 3000 }
+      },
+      "required": ["number", "clientName", "totalAmount", "status"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/Project" },
+      "description": "Collection of wedding and stationery projects"
+    },
+    "/tasks/{taskId}": {
+      "schema": { "$ref": "#/entities/ProjectTask" },
+      "description": "Collection of tasks and processes across projects"
+    },
+    "/inventory/{inventoryId}": {
+      "schema": { "$ref": "#/entities/InventoryItem" },
+      "description": "Collection of raw materials in stock"
+    },
+    "/supplier_orders/{orderId}": {
+      "schema": { "$ref": "#/entities/SupplierOrder" },
+      "description": "Collection of purchase orders to suppliers"
+    },
+    "/call_notes/{callNoteId}": {
+      "schema": { "$ref": "#/entities/CallNote" },
+      "description": "Collection of meeting and call notes"
+    },
+    "/appointments/{appointmentId}": {
+      "schema": { "$ref": "#/entities/Appointment" },
+      "description": "Collection of studio and client calendar appointments"
+    },
+    "/studio_expenses/{expenseId}": {
+      "schema": { "$ref": "#/entities/StudioExpense" },
+      "description": "Collection of studio overhead expenses"
+    },
+    "/client_emails/{emailId}": {
+      "schema": { "$ref": "#/entities/ClientEmail" },
+      "description": "Collection of client emails and alerts"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "#/entities/CapacitySettings" },
+      "description": "Studio configuration settings"
+    },
+    "/catalog_products/{productId}": {
+      "schema": { "$ref": "#/entities/CatalogProduct" },
+      "description": "Catalog of stationery products with prices"
+    },
+    "/quotes/{quoteId}": {
+      "schema": { "$ref": "#/entities/Quote" },
+      "description": "Quotes and estimates for clients"
+    }
+  }
+}

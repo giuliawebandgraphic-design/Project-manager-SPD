@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+  }
+
+  body {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+    color: #26332A;
+    background-color: #FAF8F5;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif, .font-sans {
+    font-family: 'Montserrat', system-ui, -apple-system, sans-serif !important;
+  }
+}
+
+/* Custom scrollbars in soft sage & beige */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8E5DC;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9BB4A2;
+}
+
+/* Print styles for Scheda Cliente e Preventivi */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #26332A !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+}
